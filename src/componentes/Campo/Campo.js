@@ -14,7 +14,8 @@ if condicao mostra erro
 
 class Campo extends React.Component {
   constructor(props){
-    super(props)
+    super(props)    
+  
     this.state = {erro: ''}
     }
   
