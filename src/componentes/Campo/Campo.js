@@ -27,7 +27,7 @@ class Campo extends React.Component {
       } else if (this.props.pattern && this.props.pattern.test(input.value)){
         this.setState({ erro: "Email inválido"})
       }
-       else {
+       else {  
         this.setState({ erro: ''})
       }
     }
