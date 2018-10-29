@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Campo.css'
 /*
 1) O componente pode mudar de estado? Sim // Classe
@@ -12,7 +12,7 @@ if condicao mostra erro
 */
 
 
-class Campo extends React.Component {
+class Campo extends Component {
   constructor(props){
     super(props)    
   
@@ -46,6 +46,7 @@ class Campo extends React.Component {
               name={this.props.name}
               placeholder={this.props.placeholder}
               onChange={this.valida}
+              onBlur={this.valida}
             />
             <p className="grupo__erro">{this.state.erro}</p>
           </div>

@@ -11,9 +11,9 @@ return (
   <h1>Login</h1>
   <p>Entre com seu email e senha.</p>
   <Legenda htmlFor="email">Email:</Legenda>
-  <Campo id="email" type="email" name="email" placeholder="Email" value="Email" obrigatorio minLength={10}> </Campo>
+  <Campo id="email" type="email" name="email" placeholder="Email" value="Email" required minLength={10}> </Campo>
   <Legenda htmlFor="senha">Senha:</Legenda>
-  <Campo id="senha" type="password" name="senha" placeholder="Senha" value="Senha" obrigatorio minLength={6}> </Campo>
+  <Campo id="senha" type="password" name="senha" placeholder="Senha" value="Senha" required minLength={6}> </Campo>
   <Link url="/conta">Criar uma conta</Link>
   <Link url="/login">Fazer login</Link>
   <Botao desabilitado>Enviar</Botao>
