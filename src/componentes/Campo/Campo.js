@@ -21,16 +21,20 @@ class Campo extends React.Component {
   
     valida = (evento) => {
       const input = evento.target
-      if (this.props.obrigatorio && input.value.trim() === '' ) {
-        this.setState({erro: 'Campo obrigatório'})
-      } else if (this.props.minLength && input.value.length < this.props.minLength){
-        this.setState({ erro: `Digite pelo menos ${this.props.minLength} caracteres`})
-      } else if (this.props.pattern && this.props.pattern.test(input.value)){
-        this.setState({ erro: "Email inválido"})
+      const {value, type } = input
+      const { required, minLength} = this.props
+      const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      let mensagem = ''
+
+
+      if (required && value.trim() === '' ) {
+        mensagem = 'Campo obrigatório'
+      } else if (minLength && value.length < minLength){
+        mensagem = `Digite pelo menos ${minLength} caracteres`
+      } else if (type === 'email' && !regex.test(value)){
+        mensagem =  'Email inválido'
       }
-       else {  
-        this.setState({ erro: ''})
-      }
+        this.setState({ erro: mensagem})
     }
     render() {
         return (
