@@ -48,8 +48,6 @@ class Campo extends Component {
         mensagem =  'Email inválido'
       }
         this.setState({modificado: true,  erro: mensagem}, this.props.onChange)
-
-        this.props.onChange()
     }
     render() {
         return (
