@@ -15,10 +15,15 @@ if condicao mostra erro
 class Campo extends Component {
   constructor(props){
     super(props)    
-  
+    this.senhaRef = React.createRef()
+    this.emailRef = React.createRef()
     this.state = {erro: ''}
     }
-  
+    
+    temErro() {
+      return this.state.erro ? true : false
+    }
+
     valida = (evento) => {
       const input = evento.target
       const {value, type } = input
@@ -35,11 +40,13 @@ class Campo extends Component {
         mensagem =  'Email inválido'
       }
         this.setState({ erro: mensagem})
+
+        this.props.onChange()
     }
     render() {
         return (
           <div>
-            <input 
+            <input
               id={this.props.id}
               className="campo"
               type={this.props.type}
