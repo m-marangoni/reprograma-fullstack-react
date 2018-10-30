@@ -17,11 +17,19 @@ class Campo extends Component {
     super(props)    
     this.senhaRef = React.createRef()
     this.emailRef = React.createRef()
-    this.state = {erro: ''}
+    this.state = {
+        modificado: false, 
+        erro: ''
+      }
     }
     
     temErro() {
-      return this.state.erro ? true : false
+      if (!this.state.modificado || this.state.erro){
+        return true
+      }
+      else{
+        return false
+      }
     }
 
     valida = (evento) => {
@@ -39,7 +47,7 @@ class Campo extends Component {
       } else if (type === 'email' && !regex.test(value)){
         mensagem =  'Email inválido'
       }
-        this.setState({ erro: mensagem})
+        this.setState({modificado: true,  erro: mensagem}, this.props.onChange)
 
         this.props.onChange()
     }
