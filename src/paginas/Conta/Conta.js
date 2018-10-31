@@ -50,8 +50,4 @@ class Conta extends Component {
   }
 }
 
-
-
-
-
 export default Conta
