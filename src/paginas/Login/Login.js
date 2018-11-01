@@ -16,31 +16,32 @@ class Login extends Component {
     this.state = { desabilitado: true }
   }
 
+  handleChange = () => {
+    const campoEmail = this.emailRef.current
+    const campoSenha = this.senhaRef.current
+    
+    if (campoEmail.temErro() || campoSenha.temErro()){
+      this.setState({ desabilitado: true})
+    }
+    else {
+      this.setState({ desabilitado: false})
+    }
+  }
+
   enviaDados = (evento) => {
     evento.preventDefault()
 
     const dados = {
-      email: 'mariana@gmail.com',
-      senha: 'xxxxxx'
+      email: this.emailRef.current.getValor(),
+      senha: this.senhaRef.current.getValor()
     }
-
     this.props.onEnviar(dados)
     this.props.historico.push('/')
+    
   }
 
 
-    handleChange = (evento) => {
-      const campoEmail = this.emailRef.current
-      const campoSenha = this.senhaRef.current
-
-      if (campoEmail.temErro() || campoSenha.temErro()){
-        this.setState({ desabilitado: true})
-      }
-      else {
-        this.setState({ desabilitado: false})
-      }
-    }
-
+    
     render(){
       return (
         <main className="login">

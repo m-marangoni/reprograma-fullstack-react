@@ -15,14 +15,17 @@ if condicao mostra erro
 class Campo extends Component {
   constructor(props){
     super(props)    
-    this.senhaRef = React.createRef()
-    this.emailRef = React.createRef()
+    this.valor = ''
     this.state = {
         modificado: false, 
         erro: ''
       }
     }
-    
+
+    getValor() {
+      return this.valor
+    }
+
     temErro() {
       if (!this.state.modificado || this.state.erro){
         return true
@@ -35,9 +38,13 @@ class Campo extends Component {
     valida = (evento) => {
       const input = evento.target
       const {value, type } = input
+
+      this.valor = value
+
       const { required, minLength} = this.props
       const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       let mensagem = ''
+
 
 
       if (required && value.trim() === '' ) {

@@ -9,8 +9,11 @@ import QuemSomos from './paginas/QuemSomos/QuemSomos'
 import NaoEncontrada from './paginas/NaoEncontrada/NaoEncontrada';
 import './index.css'
 
-let usuario = null
+let usuario = JSON.parse(localStorage.getItem('usuario'))
+
 function logaUsuario(dados){
+    const json = JSON.stringify(dados)
+    localStorage.setItem('usuario', json)
     usuario = dados
 }
 
