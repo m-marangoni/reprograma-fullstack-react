@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import Navbar from './componentes/Navbar/Navbar'
 import Home from './paginas/Home/Home'
-import  Login  from './paginas/Login/Login'
+import Login  from './paginas/Login/Login'
 import Conta from './paginas/Conta/Conta'
 import Contato from './paginas/Contato/Contato'
 import QuemSomos from './paginas/QuemSomos/QuemSomos'
@@ -16,12 +17,16 @@ function logaUsuario(dados){
     localStorage.setItem('usuario', json)
     usuario = dados
 }
+function deslogaUsuario(){
+    localStorage.removeItem(usuario)
+    usuario = null
+}
 
 function App(){
+
     return(
         <div className="app">
-        {/* <Navbar>*/}
-
+        <Navbar usuario={usuario} deslogaUsuario={deslogaUsuario}/>
         <Switch>
             <Route path="/"  exact render={() => {
                 return usuario ? <Home /> : <Redirect to="/login"/>
