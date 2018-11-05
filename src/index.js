@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Navbar from './componentes/Navbar/Navbar'
 import Home from './paginas/Home/Home'
 import Login  from './paginas/Login/Login'
@@ -43,6 +44,20 @@ function App(){
         </div>
     )
 }
+
+function passaDadosDoEstadoParaMeuComponente(state){
+    const props = {
+
+    }
+    return props
+}
+
+const conectaNaStore = connect(
+    passaDadosDoEstadoParaMeuComponente, 
+    passaFuncoesQueDisparamAcoesViaProps
+    )
+
+conectaNaStore(App)
 
 ReactDOM.render(
     <BrowserRouter>
