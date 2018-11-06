@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-import {Provider, connect } from 'react-redux'
+import { withRouter, BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { Provider, connect } from 'react-redux'
 import store from './redux/store'
 import Navbar from './componentes/Navbar/Navbar'
 import Home from './paginas/Home/Home'
@@ -12,17 +12,6 @@ import QuemSomos from './paginas/QuemSomos/QuemSomos'
 import NaoEncontrada from './paginas/NaoEncontrada/NaoEncontrada';
 import './index.css'
 
-let usuario = JSON.parse(localStorage.getItem('usuario'))
-
-function logaUsuario(dados){
-    const json = JSON.stringify(dados)
-    localStorage.setItem('usuario', json)
-    usuario = dados
-}
-function deslogaUsuario(){
-    localStorage.removeItem(usuario)
-    usuario = null
-}
 
 function App(props){
     const usuario = props.usuario
@@ -58,9 +47,9 @@ function passaDadosDoEstadoParaMeuComponente(state){
 
 function passaFuncoesQueDisparamAcoesViaProps(dispatch){
     const props = {
-        logaUsuario: () => {
+        logaUsuario: (dados) => {
             const acao = {
-                type: 'LOGA_USUARIO'
+                type: 'LOGA_USUARIO',
                 dados: dados
             }
             dispatch(acao)
@@ -82,12 +71,12 @@ const conectaNaStore = connect(
     )
     
 
-const appConectado = conectaNaStore(App)
+const AppConectado = withRouter(conectaNaStore(App))
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <appConectado/>
+            <AppConectado/>
         </BrowserRouter>
     </Provider>,
     document.getElementById('projeto')
