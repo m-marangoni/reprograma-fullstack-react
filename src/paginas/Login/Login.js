@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
 import Link from '../../componentes/Link/Link'
 import Botao from '../../componentes/Botao/Botao'
 import Legenda from '../../componentes/Legenda/Legenda'
 import Campo from '../../componentes/Campo/Campo'
 import './Login.css'
-
-
 
 class Login extends Component {
 
@@ -28,19 +27,17 @@ class Login extends Component {
     }
   }
 
-  enviaDados = (evento) => {
-    evento.preventDefault()
+  enviaDados = (event) => {
+    event.preventDefault()
 
     const dados = {
       email: this.emailRef.current.getValor(),
       senha: this.senhaRef.current.getValor()
     }
-    this.props.onEnviar(dados)
-    this.props.historico.push('/')
+    this.props.logaUsuario(dados)
+    this.props.history.push('/')
     
   }
-
-
     
     render(){
       return (
@@ -73,4 +70,21 @@ class Login extends Component {
   }
 }
 
-export default Login
+function passaAcoesNoProps(dispatch) {
+  return{
+      logaUsuario: (dados) => {
+          const acao = {
+              type: 'LOGA_USUARIO',
+              dados: dados
+          }
+          dispatch(acao)
+      }
+  }
+}
+const conectaNaStore = connect(
+  null,
+  passaAcoesNoProps
+)
+const LoginConectado = conectaNaStore(Login)
+
+export default LoginConectado
