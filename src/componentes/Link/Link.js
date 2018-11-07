@@ -3,7 +3,7 @@ import {Link as RouterLink} from 'react-router-dom'
 import './Link.css'
 
 function Link(props) {
-  return (<RouterLink clLinkssName="link" to={props.url}>
+  return (<RouterLink className="link" to={props.url}>
     {props.children}
   </RouterLink>);
 }

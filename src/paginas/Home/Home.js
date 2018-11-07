@@ -6,24 +6,16 @@ import './Home.css'
 
 
 function Home(props){
-    if (props.usuario){
+    if (!props.usuario){
         return <Redirect to="/login"/>
     }
 
-    return(
-        <main className="home">
+    return ( <main className="home">
        
         </main>
     )
 }
 
-function pegaDadosDoEstadoNoProps(state){
-    return {
-        usuario: state.usuario
-    }
-}
-
-const conectaNaStore = connect(pegaDadosDoEstadoNoProps)
-const HomeConectado = conectaNaStore(Home)
-
-export default HomeConectado
+export default connect(
+    (state) =>  ({usuario: state.usuario})
+)(Home)
