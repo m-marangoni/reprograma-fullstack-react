@@ -15,3 +15,10 @@ export function deslogaUsuario() {
         }
     }
 }
+
+export function cadastraPostit(dados){
+    return {
+        type: 'CADASTRA_POSTIT',
+        dados
+    }
+}
