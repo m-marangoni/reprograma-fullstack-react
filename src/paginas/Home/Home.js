@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import Postit from '../../componentes/Postit/Postit'
 import loading from './loading.svg'
 import './Home.css'
 
@@ -8,7 +9,7 @@ import './Home.css'
 class Home extends Component {
     constructor(props){
         super(props)
-        this.state = {loading: true}
+        this.state = {loading: false}
     }
 
     render(){
@@ -18,15 +19,16 @@ class Home extends Component {
     
         return ( 
             <main className="home">
-            {this.state.loading} ? (
+            {this.state.loading ? (
                 <img className="home__loading" src={loading} alt="loading"/>
             ) :
-            ( <div> Aqui listarei os post-its</div>)
+            ( <div> 
+                <Postit/>
+            </div>
+        )}
             </main>
-        )
-    }
+        )}
 }
-
 
 export default connect(
     (state) =>  ({usuario: state.usuario})
