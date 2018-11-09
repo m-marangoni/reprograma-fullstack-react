@@ -28,6 +28,7 @@ class Home extends Component {
                     {this.props.postits.map(postit => (
                         <Postit 
                         key={postit.id}
+                        id={postit.id}
                         titulo={postit.titulo}
                         texto={postit.texto}
 
