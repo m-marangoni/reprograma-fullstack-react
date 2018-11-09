@@ -24,12 +24,27 @@ class Home extends Component {
             ) :
             ( <div> 
                 <Postit/>
+                <div>
+                    {this.props.postits.map(postit => (
+                        <Postit 
+                        key={postit.id}
+                        titulo={postit.titulo}
+                        texto={postit.texto}
+
+                         />
+                    ))}
+                </div>
+
             </div>
+
         )}
             </main>
         )}
 }
 
 export default connect(
-    (state) =>  ({usuario: state.usuario})
+    (state) =>  ({
+    usuario: state.usuario,
+    postits: state.postits
+})
 )(Home)

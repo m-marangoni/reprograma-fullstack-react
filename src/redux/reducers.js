@@ -28,7 +28,7 @@ function postits(state = [], action){
         case 'CADASTRA_POSTIT':
         return state.concat(action.dados)
         default:
-        return postitsAtuais
+        return state
     }
 }
 
