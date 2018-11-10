@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { logaUsuario} from '../../redux/actions'
+import { Redirect } from 'react-router-dom'
 import Link from '../../componentes/Link/Link'
 import Botao from '../../componentes/Botao/Botao'
 import Legenda from '../../componentes/Legenda/Legenda'
 import Campo from '../../componentes/Campo/Campo'
-
 import './Login.css'
-
+//camilaibs@gmail.com 123123
 class Login extends Component {
 
   constructor(props) {
@@ -42,11 +42,13 @@ class Login extends Component {
   }
     
     render(){
+      if (this.props.usuario) {
+        return <Redirect to="/" />
+      }
       return (
         <main className="login">
       <h1>Login</h1>
       <p>Entre com seu email e senha.</p>
-
       <form onSubmit={this.enviaDados}>
         <Legenda htmlFor="email">Email:</Legenda>
         <Campo 
@@ -75,7 +77,6 @@ class Login extends Component {
 
 
 
-export default connect(
-  null,
+export default connect((state) => ({ usuario: state.usuario}), 
   { logaUsuario }
   )(Login)
